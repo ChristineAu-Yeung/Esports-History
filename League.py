@@ -80,7 +80,7 @@ def getChampionInfo(championID):
         championData = json.loads(json_file.read())
     for i in championData["data"]:
         if(str(championID) == str(championData["data"][i]["key"])):
-            print(championData["data"][i]["image"]["full"])
+            # print(championData["data"][i]["image"]["full"])
             return(championData["data"][i]["image"]["full"])
     
             
