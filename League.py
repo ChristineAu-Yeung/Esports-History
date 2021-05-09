@@ -1,6 +1,5 @@
 import requests
 import json
-import os
 
 from flask import Flask, request
 from flask_cors import CORS
