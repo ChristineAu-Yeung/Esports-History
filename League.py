@@ -122,6 +122,19 @@ def getStatsofGames(summonerName, numberMatches, matchInfo, apiKey):
 #         matchInfo = getMatches(accountid, apiKey)
 #         statsList = getStatsofGames(summonerName, numberMatches, matchInfo, apiKey)
 #         printOutput(statsList)
+
+@app.route('/set', methods=['POST'])
+def setAPIKey():
+    
+    content = request.json
+    APIkey = content['key']
+    print(APIkey)
+    if type(APIkey) is str and len(APIkey) > 0:
+        with open('keyData.json', 'w') as jsonData:
+            apiJson = {'apiKey':APIkey}
+            json.dump(apiJson, jsonData)
+
+    return 'Success'
     
 @app.route('/')
 def getGameData():
@@ -135,9 +148,10 @@ def getGameData():
         matchInfo = getMatches(accountid, apiKey)
         statsList = getStatsofGames(summonerName, numberMatches, matchInfo, apiKey)
         return json.dumps(statsList)
+
     return 'Failed'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
     # main()
 
